@@ -20,7 +20,7 @@
     'author': 'PT PAL Indonesia (Persero) - Human Capital Division',
     'website': 'https://www.integratedpal.com',
     'category': 'Human Resources',
-    'version': '14.0.1.0.0',
+    'version': '18.0.1.0.0',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': [

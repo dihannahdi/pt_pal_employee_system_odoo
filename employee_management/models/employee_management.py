@@ -12,19 +12,16 @@ class EmployeeManagement(models.Model):
     name = fields.Char(
         string='Nama Lengkap',
         required=True,
-        tracking=True,
     )
     nik_karyawan = fields.Char(
         string='Nomor Induk Karyawan',
         required=True,
         copy=False,
-        tracking=True,
         help='Nomor Induk Karyawan (NIK Perusahaan) yang unik untuk setiap karyawan PT PAL.',
     )
     nik_ktp = fields.Char(
         string='NIK (KTP)',
         size=16,
-        tracking=True,
         help='Nomor Induk Kependudukan sesuai KTP (16 digit).',
     )
     department = fields.Selection(
@@ -48,23 +45,18 @@ class EmployeeManagement(models.Model):
         ],
         string='Departemen',
         required=True,
-        tracking=True,
     )
     position = fields.Char(
         string='Jabatan',
-        tracking=True,
     )
     join_date = fields.Date(
         string='Tanggal Bergabung',
-        tracking=True,
     )
     bpjs_kesehatan = fields.Char(
         string='No. BPJS Kesehatan',
-        tracking=True,
     )
     bpjs_ketenagakerjaan = fields.Char(
         string='No. BPJS Ketenagakerjaan',
-        tracking=True,
     )
     employee_status = fields.Selection(
         selection=[
@@ -75,7 +67,6 @@ class EmployeeManagement(models.Model):
         string='Status Karyawan',
         default='permanent',
         required=True,
-        tracking=True,
     )
     active = fields.Boolean(
         string='Active',
