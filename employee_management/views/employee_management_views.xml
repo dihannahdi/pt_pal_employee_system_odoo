@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ============================================================ -->
+        <!-- Form View -->
+        <!-- ============================================================ -->
+        <record id="employee_management_view_form" model="ir.ui.view">
+            <field name="name">employee.management.view.form</field>
+            <field name="model">employee.management</field>
+            <field name="arch" type="xml">
+                <form string="Data Karyawan PT PAL">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Nama Lengkap Karyawan"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Informasi Karyawan">
+                                <field name="nik_karyawan"/>
+                                <field name="nik_ktp"/>
+                                <field name="department"/>
+                                <field name="position"/>
+                                <field name="join_date"/>
+                                <field name="employee_status"/>
+                            </group>
+                            <group string="Data BPJS &amp; Status">
+                                <field name="bpjs_kesehatan"/>
+                                <field name="bpjs_ketenagakerjaan"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Catatan" name="notes">
+                                <field name="notes" placeholder="Catatan tambahan mengenai karyawan..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- Tree / List View -->
+        <!-- ============================================================ -->
+        <record id="employee_management_view_tree" model="ir.ui.view">
+            <field name="name">employee.management.view.tree</field>
+            <field name="model">employee.management</field>
+            <field name="arch" type="xml">
+                <tree string="Daftar Karyawan PT PAL" decoration-muted="active == False">
+                    <field name="nik_karyawan"/>
+                    <field name="name"/>
+                    <field name="department"/>
+                    <field name="position"/>
+                    <field name="employee_status"/>
+                    <field name="join_date"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- Search View -->
+        <!-- ============================================================ -->
+        <record id="employee_management_view_search" model="ir.ui.view">
+            <field name="name">employee.management.view.search</field>
+            <field name="model">employee.management</field>
+            <field name="arch" type="xml">
+                <search string="Cari Karyawan">
+                    <field name="name" string="Nama"/>
+                    <field name="nik_karyawan" string="NIK Karyawan"/>
+                    <field name="nik_ktp" string="NIK KTP"/>
+                    <field name="department" string="Departemen"/>
+                    <field name="position" string="Jabatan"/>
+                    <separator/>
+                    <filter string="Karyawan Tetap" name="permanent"
+                            domain="[('employee_status', '=', 'permanent')]"/>
+                    <filter string="Karyawan Kontrak" name="contract"
+                            domain="[('employee_status', '=', 'contract')]"/>
+                    <filter string="Magang" name="intern"
+                            domain="[('employee_status', '=', 'intern')]"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive"
+                            domain="[('active', '=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Departemen" name="group_department"
+                                context="{'group_by': 'department'}"/>
+                        <filter string="Status Karyawan" name="group_status"
+                                context="{'group_by': 'employee_status'}"/>
+                        <filter string="Tanggal Bergabung" name="group_join_date"
+                                context="{'group_by': 'join_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!-- Action Window -->
+        <!-- ============================================================ -->
+        <record id="employee_management_action" model="ir.actions.act_window">
+            <field name="name">Data Karyawan</field>
+            <field name="res_model">employee.management</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="employee_management_view_search"/>
+            <field name="context">{'search_default_group_department': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tambahkan Data Karyawan Pertama!
+                </p>
+                <p>
+                    Klik tombol "Create" untuk menambahkan data karyawan baru PT PAL Indonesia.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

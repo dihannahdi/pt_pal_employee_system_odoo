@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Module Category -->
+        <record id="module_category_human_capital" model="ir.module.category">
+            <field name="name">PT PAL Human Capital</field>
+            <field name="description">Kategori modul untuk Divisi Human Capital PT PAL Indonesia</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- Human Capital User Group -->
+        <record id="group_human_capital_user" model="res.groups">
+            <field name="name">Human Capital User</field>
+            <field name="category_id" ref="module_category_human_capital"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Pengguna yang dapat mengakses dan mengelola data karyawan PT PAL Indonesia.</field>
+        </record>
+
+        <!-- Human Capital Manager Group -->
+        <record id="group_human_capital_manager" model="res.groups">
+            <field name="name">Human Capital Manager</field>
+            <field name="category_id" ref="module_category_human_capital"/>
+            <field name="implied_ids" eval="[(4, ref('group_human_capital_user'))]"/>
+            <field name="comment">Manager yang memiliki akses penuh terhadap seluruh fitur manajemen karyawan PT PAL Indonesia.</field>
+        </record>
+
+    </data>
+</odoo>

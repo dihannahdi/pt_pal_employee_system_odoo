@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Top-Level / Root Menu -->
+        <menuitem
+            id="employee_management_menu_root"
+            name="PT PAL Employee Management"
+            web_icon="employee_management,static/description/icon.png"
+            sequence="50"/>
+
+        <!-- Sub Menu: Human Capital -->
+        <menuitem
+            id="employee_management_menu_human_capital"
+            name="Human Capital"
+            parent="employee_management_menu_root"
+            sequence="10"/>
+
+        <!-- Action Menu: Data Karyawan -->
+        <menuitem
+            id="employee_management_menu_data_karyawan"
+            name="Data Karyawan"
+            parent="employee_management_menu_human_capital"
+            action="employee_management_action"
+            sequence="10"/>
+
+    </data>
+</odoo>
