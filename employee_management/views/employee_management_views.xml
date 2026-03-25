@@ -13,7 +13,7 @@
                     <sheet>
                         <div class="oe_button_box" name="button_box"/>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
-                                invisible="active == True"/>
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <div class="oe_title">
                             <h1>
                                 <field name="name" placeholder="Nama Lengkap Karyawan"/>
@@ -45,13 +45,13 @@
         </record>
 
         <!-- ============================================================ -->
-        <!-- List View -->
+        <!-- Tree / List View -->
         <!-- ============================================================ -->
         <record id="employee_management_view_tree" model="ir.ui.view">
-            <field name="name">employee.management.view.list</field>
+            <field name="name">employee.management.view.tree</field>
             <field name="model">employee.management</field>
             <field name="arch" type="xml">
-                <list string="Daftar Karyawan PT PAL" decoration-muted="active == False">
+                <tree string="Daftar Karyawan PT PAL" decoration-muted="active == False">
                     <field name="nik_karyawan"/>
                     <field name="name"/>
                     <field name="department"/>
@@ -59,7 +59,7 @@
                     <field name="employee_status"/>
                     <field name="join_date"/>
                     <field name="active" invisible="1"/>
-                </list>
+                </tree>
             </field>
         </record>
 
@@ -104,7 +104,7 @@
         <record id="employee_management_action" model="ir.actions.act_window">
             <field name="name">Data Karyawan</field>
             <field name="res_model">employee.management</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="employee_management_view_search"/>
             <field name="context">{'search_default_group_department': 1}</field>
             <field name="help" type="html">
